@@ -1,28 +1,34 @@
 import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+from pages import information, preprocessing, home
 
-filepath = 'laptop_price - dataset.csv'
+pages = {
+    "Information about the dataset": information,
+    "Preprocessing": preprocessing,
+    "Home": home
+}
 
-st.title('Information about the dataset')
+# import streamlit as st
 
-train_data = pd.read_csv((filepath), sep=',', header=0)
-df = pd.DataFrame(train_data)
-st.write('Head of the dataset:')
-st.write(df.head())
-st.write('Description of the numerical columns of the dataset:')
-st.write(df.describe())
-st.write('Companies in the dataset:')
-st.write(df['Company'].unique())
-st.write('CPU types in the dataset:')
-st.write(df['CPU_Type'].value_counts())
-# df.isnull().sum()
+# # Set the page layout (optional)
+# st.set_page_config(layout="wide")
 
-st.write('Distribution of Companies:')
-plt.figure(figsize=(20, 6))
-sns.histplot(df['Company'], kde=True)
-plt.title('Distribution of Companies')
-plt.xlabel('Company')
-plt.ylabel('Frequency')
-st.pyplot(plt)
+# # Custom CSS to remove all default UI elements
+# hide_streamlit_default_elements = """
+#     <style>
+#         #MainMenu {visibility: hidden;} /* Hides the hamburger menu */
+#         footer {visibility: hidden;}   /* Hides the footer */
+#         header {visibility: hidden;}   /* Hides the header */
+#         [data-testid="collapsedControl"] {display: none;} /* Hides the sidebar toggle button */
+#     </style>
+# """
+# st.markdown(hide_streamlit_default_elements, unsafe_allow_html=True)
+
+# # Your custom app content
+# st.title("Custom Streamlit App")
+# st.write("This app has no default Streamlit UI elements.")
+
+# Custom sidebar navigation
+# st.sidebar.title("Navigation")
+# page_selection = st.sidebar.radio("Go to", list(pages.keys()))
+# page = pages[page_selection]
+# page.app()
