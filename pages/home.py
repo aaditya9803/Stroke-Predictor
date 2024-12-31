@@ -1,3 +1,4 @@
 import streamlit as st
 
-st.title('Home')
+def show_home():
+    st.title('Home')

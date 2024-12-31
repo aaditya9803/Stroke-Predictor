@@ -1,3 +1,4 @@
 import streamlit as st
 
-st.title('Preprocessing')
+def show_preprocessing():
+    st.title('Preprocessing')
