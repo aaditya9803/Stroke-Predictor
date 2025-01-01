@@ -2,6 +2,7 @@ import streamlit as st
 from pages.home import show_home
 from pages.information import show_information
 from pages.preprocessing import show_preprocessing
+from pages.chatbot import show_chatbot
 # st.sidebar.empty()
 
 st.set_page_config(initial_sidebar_state="collapsed")
@@ -77,7 +78,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4, col5 = st.columns(5)
 
 if 'page' not in st.session_state:
     st.session_state.page = 'home'
@@ -89,9 +90,12 @@ with col2:
     if st.button("Information"):
         st.session_state.page = 'information'
 with col3:
+    if st.button("Chatbot"):
+        st.session_state.page = 'chatbot'
+with col4:
     if st.button("Preprocessing"):
         st.session_state.page = 'preprocessing'
-with col4:
+with col5:
     if st.button("Contact"):
         st.session_state.page = 'contact'
 
@@ -103,6 +107,8 @@ elif st.session_state.page == 'information':
     show_information()
 elif st.session_state.page == 'preprocessing':
     show_preprocessing()
+elif st.session_state.page == 'chatbot':
+    show_chatbot()
 elif st.session_state.page == 'contact':
     st.title("Contact")
     st.write("Get in touch with us")
