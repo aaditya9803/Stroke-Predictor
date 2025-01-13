@@ -75,43 +75,58 @@ st.markdown("""
                 font-size: 14px;
             }
         }
+
+
+        section[data-testid="stSidebar"] {
+            display: none !important;
+        }
+        [data-testid="stSidebarCollapsedControl"] {
+            display: none !important;
+        }
     </style>
 """, unsafe_allow_html=True)
 
-col1, col2, col3, col4, col5 = st.columns(5)
-
-if 'page' not in st.session_state:
-    st.session_state.page = 'home'
-
-with col1:
-    if st.button("Home"):
-        st.session_state.page = 'home'
-with col2:
-    if st.button("Information"):
-        st.session_state.page = 'information'
-with col3:
-    if st.button("Chatbot"):
-        st.session_state.page = 'chatbot'
-with col4:
-    if st.button("Preprocessing"):
-        st.session_state.page = 'preprocessing'
-with col5:
-    if st.button("Contact"):
-        st.session_state.page = 'contact'
 
 st.markdown('<div class="main-content">', unsafe_allow_html=True)
+nav_placeholder = st.empty()  # Create a placeholder for the navigation bar
+with nav_placeholder.container():
+    col1, col2, col3, col4, col5 = st.columns(5)
 
-if st.session_state.page == 'home':
-    show_home()
-elif st.session_state.page == 'information':
-    show_information()
-elif st.session_state.page == 'preprocessing':
-    show_preprocessing()
-elif st.session_state.page == 'chatbot':
-    show_chatbot()
-elif st.session_state.page == 'contact':
-    st.title("Contact")
-    st.write("Get in touch with us")
+    if 'page' not in st.session_state:
+        st.session_state.page = 'home'
+
+    with col1:
+        if st.button("Home"):
+            st.session_state.page = 'home'
+    with col2:
+        if st.button("Information"):
+            st.session_state.page = 'information'
+    with col3:
+        if st.button("Chatbot"):
+            st.session_state.page = 'chatbot'
+    with col4:
+        if st.button("Preprocessing"):
+            st.session_state.page = 'preprocessing'
+    with col5:
+        if st.button("Contact"):
+            st.session_state.page = 'contact'
+st.markdown('</div>', unsafe_allow_html=True)
+st.markdown('<div class="content">', unsafe_allow_html=True)
+content_placeholder = st.empty()  # Create a placeholder for page content
+with content_placeholder.container():
+    if st.session_state.page == 'home':
+        show_home()
+    elif st.session_state.page == 'information':
+        show_information()
+    elif st.session_state.page == 'preprocessing':
+        show_preprocessing()
+    elif st.session_state.page == 'chatbot':
+        show_chatbot()
+    elif st.session_state.page == 'contact':
+        st.title("Contact")
+        st.write("Get in touch with us")
+        
 
 st.markdown('</div>', unsafe_allow_html=True)
+
 

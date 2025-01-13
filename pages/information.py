@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 def show_information():
-    filepath = 'laptop_price - dataset.csv'
+    filepath = 'dataset-stroke.csv'
 
     st.title('Information about the dataset')
 
@@ -14,16 +14,13 @@ def show_information():
     st.write(df.head())
     st.write('Description of the numerical columns of the dataset:')
     st.write(df.describe())
-    st.write('Companies in the dataset:')
-    st.write(df['Company'].unique())
-    st.write('CPU types in the dataset:')
-    st.write(df['CPU_Type'].value_counts())
+
     # df.isnull().sum()
 
-    st.write('Distribution of Companies:')
+    st.write('Distribution of BMI:')
     plt.figure(figsize=(20, 6))
-    sns.histplot(df['Company'], kde=True)
-    plt.title('Distribution of Companies')
-    plt.xlabel('Company')
+    sns.histplot(df['bmi'], kde=True)
+    plt.title('Distribution of BMI')
+    plt.xlabel('BMI')
     plt.ylabel('Frequency')
     st.pyplot(plt)
