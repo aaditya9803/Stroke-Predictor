@@ -90,7 +90,7 @@ def show_home():
         st.subheader("Average Gulcose Level")
         st.session_state.bmi = st.slider("Select your Average Gulcose level:",
                         min_value = 0,
-                        max_value = 50,
+                        max_value = 300,
                         value = st.session_state.bmi,
                         help = "if you don't know select I don't know"
         )
@@ -140,4 +140,4 @@ def show_home():
         st.subheader("Submit")
         # if submit_button:
         #     st.write(f"Form submitted with gender: {gender} and age: {st.session_state.age}")
-        submit_button = st.form_submit_button(label='Submit') #, onclick=form_submit
+        submit_button = st.form_submit_button(label='Submit', on_click=form_submit)
