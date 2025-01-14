@@ -1,4 +1,5 @@
 import streamlit as st
+from pages.ml_function import get_result
 
 def form_submit():
     # Access form data from session state
@@ -15,9 +16,9 @@ def form_submit():
     dont_know_gulcose = st.session_state.dont_know_gulcose
 
     # Print values for debugging
-    print("\nSubmitted Data:")
+    # print("\nSubmitted Data:")
     print(age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_type, married, smokes, residence, dont_know_gulcose)
-
+    get_result(age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_type, married, smokes, residence, dont_know_gulcose)
 # Function to show the form
 def show_home():
     if "initialized" not in st.session_state:
@@ -28,10 +29,10 @@ def show_home():
             "hypertension": "No",
             "heart_disease": "No",
             "avg_gulcose": 0,
-            "work_type": "Private",
+            "work_type": "Never Worked",
             "married": "No",
-            "smokes": "Never Smoked",
-            "residence": "Urban",
+            "smokes": "Unknown",
+            "residence": "Rural",
             "dont_know_gulcose": False,
             "initialized": True,
         })
