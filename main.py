@@ -85,13 +85,78 @@ st.markdown("""
         
  
         @media screen and (max-width: 768px) {
-            .stButton button {
-                padding: 6px 20px;
-                min-width: 100px;
-                height: 35px;
-                font-size: 14px;
+            /* Navbar layout on small screens 
+            div[data-testid="stHorizontalBlock"] {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                gap: 5px !important; 
+                flex-wrap: nowrap !important;  
+                width: 100%;
+                padding: 5px !important;
+                box-sizing: border-box !important;
+                overflow-x: auto;
             }
+
+            /* Make columns smaller to fit all buttons */
+            div[data-testid="stColumn"] {
+                flex: 1 1 auto !important;
+                max-width: 20% !important; /*column width */
+                min-width: 15% !important; /*minimum width */
+            }
+
+            /* Button Styling for Smaller Screens */
+            .stButton button {
+                padding: 5px 12px !important;  
+                min-width: 70px !important;  
+                height: 30px !important; 
+                font-size: 10px !important; 
+                border-radius: 15px !important;  
+                color: white !important;
+                border: 2px solid white !important;
+                background-color: transparent !important;
+                visibility: visible !important;
+                display: inline-block !important;
+            }
+
+            .stButton button:hover {
+                background-color: white !important;
+                color: #0066cc !important;
+            }
+
+            /* Adjust Specific Robot Button */
+            div[data-testid="stHorizontalBlock"] > div:nth-of-type(3) button {
+                width: 40px !important;
+                height: 40px !important;
+                background-repeat: no-repeat !important;
+                background-position: center !important;
+                background-size: contain !important;
+                border: none !important;
+                border-radius: 50% !important;
+                visibility: visible !important;
+            }
+
+            /* Ensure buttons are horizontally aligned on smaller screens */
+            @media screen and (max-width: 480px) {
+                div[data-testid="stHorizontalBlock"] {
+                    flex-direction: row !important;
+                    justify-content: space-around !important; /* Spread out buttons evenly */
+                    gap: 5px !important; 
+                }
+
+                }
+
+            }
+            
         }
+
+
+
+
+
+
+
+
 
 
         section[data-testid="stSidebar"] {
@@ -100,6 +165,33 @@ st.markdown("""
         [data-testid="stSidebarCollapsedControl"] {
             display: none !important;
         }
+        div[data-testid="stHorizontalBlock"] .stButton:first-child {
+            margin-left: 0px; /* Adds gap before the first button */
+        }
+
+        div[data-testid="stHorizontalBlock"] > div:nth-of-type(3) button {
+            # background-color: blue !important;
+            color: transparent;
+            background-color: transparent !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            background-size: contain !important;
+            border: none !important;
+            width: 60px !important;
+            height: 60px !important;
+            cursor: pointer !important;
+            border-radius: 50% !important;
+            position: absolute !important; /* Make the button position absolute */
+            top: -20px; /* Adjust the vertical position */
+            left: 45%; /* Adjust the horizontal position */
+            transform: translate(-50%, -50%); 
+            z-index: 10 !important; 
+            min-width: 120px;
+            height: 40px;  /* Fixed height */
+            transition: all 0.3s;
+            margin: 8px 0;
+        }   
+
     </style>
 
 
