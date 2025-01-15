@@ -1,3 +1,11 @@
+import pickle
+from xgboost import XGBClassifier
+import numpy as np
+with open("./static/stroke_xgb_model.pkl", "rb") as file:
+    imported_model = pickle.load(file)
+
+
+
 def get_result(age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_type, married, smokes, residence, dont_know_gulcose):
     
     # Gender column mapping
@@ -66,13 +74,22 @@ def get_result(age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_
     else:
         print("error - heart_disease")
     
-    # Don't know glucose column mapping
-    if dont_know_gulcose == False:
-        dont_know_gulcose = 0
-    elif dont_know_gulcose == True:
+    # IF user don't know glucose level
+    if dont_know_gulcose == True:
+        avg_gulcose = 106.147
+    elif dont_know_gulcose == False:
         dont_know_gulcose = 1
     else:
         print("error - dont_know_gulcose")
     print("From ml_function")
     print("\n")
     print (age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_type, married, smokes, residence, dont_know_gulcose)
+
+    x_vlaues = np.array([[gender, age, hypertension, heart_disease, married, work_type, residence, avg_gulcose, bmi, smokes]])
+    
+    # Predict
+    prediction = imported_model.predict(x_vlaues)
+    print("\n")
+    print (prediction)
+
+    return prediction[0]

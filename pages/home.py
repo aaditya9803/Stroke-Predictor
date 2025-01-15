@@ -18,9 +18,11 @@ def form_submit():
     # Print values for debugging
     # print("\nSubmitted Data:")
     print(age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_type, married, smokes, residence, dont_know_gulcose)
-    get_result(age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_type, married, smokes, residence, dont_know_gulcose)
+    result_from_ml = get_result(age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_type, married, smokes, residence, dont_know_gulcose)
+    st.session_state.result = result_from_ml
 # Function to show the form
 def show_home():
+
     if "initialized" not in st.session_state:
         st.session_state.update({
             "age": 0,
@@ -35,6 +37,7 @@ def show_home():
             "residence": "Rural",
             "dont_know_gulcose": False,
             "initialized": True,
+            "result": None
         })
 
     st.markdown("""
@@ -63,3 +66,11 @@ def show_home():
         if submitted:
             form_submit()
 
+
+    # Show reslut
+    if st.session_state.result == 1:
+        st.write("You are at risk of having a stroke")
+    elif st.session_state.result == 0:
+        st.write("You are not at risk of having a stroke")
+    else:
+        st.write("Please fill in the form and submit")

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 def show_information():
-    filepath = 'dataset-stroke.csv'
+    filepath = './static/dataset-stroke.csv'
 
     st.title('Information about the dataset')
 
