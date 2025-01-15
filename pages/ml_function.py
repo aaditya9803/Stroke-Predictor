@@ -85,11 +85,16 @@ def get_result(age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_
     print("\n")
     print (age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_type, married, smokes, residence, dont_know_gulcose)
 
-    x_vlaues = np.array([[gender, age, hypertension, heart_disease, married, work_type, residence, avg_gulcose, bmi, smokes]])
+    x_values = np.array([[gender, age, hypertension, heart_disease, married, work_type, residence, avg_gulcose, bmi, smokes]])
     
     # Predict
-    prediction = imported_model.predict(x_vlaues)
+    prediction = imported_model.predict(x_values)
     print("\n")
     print (prediction)
 
-    return prediction[0]
+    # Probability
+    probabilities = imported_model.predict_proba(x_values)
+    print("\n")
+    print (probabilities)
+
+    return (prediction[0], probabilities[0][1])

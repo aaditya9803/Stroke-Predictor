@@ -1,3 +1,5 @@
+# Used dataset - https://ieee-dataport.org/documents/stroke-prediction-dataset
+
 import streamlit as st
 from pages.ml_function import get_result
 
@@ -19,7 +21,10 @@ def form_submit():
     # print("\nSubmitted Data:")
     print(age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_type, married, smokes, residence, dont_know_gulcose)
     result_from_ml = get_result(age, gender, bmi, hypertension, heart_disease, avg_gulcose, work_type, married, smokes, residence, dont_know_gulcose)
-    st.session_state.result = result_from_ml
+    result_prediction = result_from_ml[0]
+    result_probability = result_from_ml[1]
+    st.session_state.result_prediction = result_prediction
+    st.session_state.result_probability = result_probability
 # Function to show the form
 def show_home():
 
@@ -37,7 +42,8 @@ def show_home():
             "residence": "Rural",
             "dont_know_gulcose": False,
             "initialized": True,
-            "result": None
+            "result_probability": None,
+            "result_prediction": None
         })
 
     st.markdown("""
@@ -67,10 +73,13 @@ def show_home():
             form_submit()
 
 
-    # Show reslut
-    if st.session_state.result == 1:
-        st.write("You are at risk of having a stroke")
-    elif st.session_state.result == 0:
-        st.write("You are not at risk of having a stroke")
-    else:
-        st.write("Please fill in the form and submit")
+        # Show reslut
+        if st.session_state.result_prediction == 1:
+            st.write("You are at risk of having a stroke")
+        elif st.session_state.result_prediction == 0:
+            st.write("You are not at risk of having a stroke")
+        else:
+            st.write("Please fill in the form and submit")
+        
+        if st.session_state.result_probability:
+            st.write(f" Your Probability of having a stroke: {st.session_state.result_probability*100}%")
