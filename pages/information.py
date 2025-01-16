@@ -19,11 +19,7 @@ def show_information():
 ##########################################################################
     st.header('1. Data Analysis on people who had a stroke')
 
-<<<<<<< HEAD
 
-=======
-    st.subheader('1.1. Gender')
->>>>>>> e1d9113c7dbf4cd2bd3d2acb368b1cb572faa4d8
 
     st.markdown("""
         <style>
@@ -38,12 +34,8 @@ def show_information():
             }
         </style>
         """, unsafe_allow_html=True)
-<<<<<<< HEAD
         
     st.subheader('1.1. Gender')
-=======
-
->>>>>>> e1d9113c7dbf4cd2bd3d2acb368b1cb572faa4d8
 
     # Gender
     stroke_females = df_stroke[df_stroke['gender'] == 'Female'].shape[0]
@@ -180,20 +172,10 @@ def show_information():
     stroke_formerly_smoked = df_stroke[df_stroke['smoking_status'] == 'formerly smoked'].shape[0]
     stroke_never_smoked = df_stroke[df_stroke['smoking_status'] == 'never smoked'].shape[0]
     stroke_smokes = df_stroke[df_stroke['smoking_status'] == 'smokes'].shape[0]
-<<<<<<< HEAD
-=======
-
-    # Calculate the percentage for each smoking status
->>>>>>> e1d9113c7dbf4cd2bd3d2acb368b1cb572faa4d8
     percent_unknown = (stroke_unknown / total_people_stroke) * 100
     percent_formerly_smoked = (stroke_formerly_smoked / total_people_stroke) * 100
     percent_never_smoked = (stroke_never_smoked / total_people_stroke) * 100
     percent_smokes = (stroke_smokes / total_people_stroke) * 100
-<<<<<<< HEAD
-=======
-
-    # Display Smoking Status distribution
->>>>>>> e1d9113c7dbf4cd2bd3d2acb368b1cb572faa4d8
     st.write(f"Smoking Status-wise stroke distribution:")
     st.write(f"• Unknown:  {percent_unknown:.2f}%")
     st.write(f"• Formerly Smoked:  {percent_formerly_smoked:.2f}%")
