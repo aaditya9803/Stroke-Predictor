@@ -20,21 +20,68 @@ def show_information():
     st.header('1. Data Analysis on people who had a stroke')
 
 
-
-    st.markdown("""
+    st.markdown(
+        """
         <style>
-            .stImage {
-                display: flex;
-                justify-content: flex-start;
-                align-items: flex-start;
-                width: 50%;
-                margin-left: 160px;  /* Move chart to the right */
-                margin-top: -105px;
-            }
-            }
+        .stImage {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 70%;
+            margin-left: 160px;
+            margin-top: -105px;
+        }
+        .custom-div {
+            margin-top: 10px; 
+            margin-left: -300px;
+        }
+
         </style>
-        """, unsafe_allow_html=True)
-        
+        """,
+        unsafe_allow_html=True
+        )
+
+
+
+
+
+
+
+
+
+
+
+
+            # /* Adjust Specific Robot Button */
+            # div[data-testid="stHorizontalBlock"] > div:nth-of-type(3) button {
+            #     width: 40px !important;
+            #     height: 40px !important;
+            #     background-repeat: no-repeat !important;
+            #     background-position: center !important;
+            #     background-size: contain !important;
+            #     border: none !important;
+            #     border-radius: 50% !important;
+            #     visibility: visible !important;
+            # }
+                  # .custom-div {
+            #     display: flex;
+            #     justify-content: flex-start;
+            #     align-items: flex-start;
+            #     width: 200%;
+            #     margin-left: 0px; 
+            #     margin-top: 100px; 
+            # }  
+
+                # div[data-testid="stImageContainer"]:nth-of-type(6) {
+            #     display: flex;
+            #     justify-content: flex-start;
+            #     align-items: flex-start;
+            #     width: 50%;
+            #     margin-left: 160px;  /* Move chart to the right */
+            #     margin-top: -105px;  /* Move chart upwards */
+            # }    
+
+
     st.subheader('1.1. Gender')
 
     # Gender
@@ -42,7 +89,7 @@ def show_information():
     stroke_males = df_stroke[df_stroke['gender'] == 'Male'].shape[0]
     percent_females_stroke = (stroke_females / total_people_stroke) * 100
     percent_males_stroke = (stroke_males / total_people_stroke) * 100
-    st.write(f"Gender-wise stroke distribution:")
+    st.write(f"Gender of people who had a stroke")
     st.write(f"• Female:  {percent_females_stroke:.2f}%")
     st.write(f"• Male:  {percent_males_stroke:.2f}%")
 
@@ -52,7 +99,6 @@ def show_information():
     fig, ax = plt.subplots(figsize=(5, 5), dpi=300)  # Adjusted size and dpi for clarity
     ax.pie(gender_sizes, labels=gender_labels, autopct='%1.2f%%', colors=['pink', 'skyblue'], startangle=90, 
         textprops={'fontsize': 15})  # Adjusted font size for labels
-    # ax.set_title("Gender Distribution of people who had a stroke", fontsize=7)  # Adjusted font size for title
     ax.axis('equal')
     st.pyplot(fig)
 
@@ -64,7 +110,7 @@ def show_information():
     stroke_with_hypertension = df_stroke[df_stroke['hypertension'] == 1].shape[0]
     percent_no_hypertension = (stroke_no_hypertension / total_people_stroke) * 100
     percent_with_hypertension = (stroke_with_hypertension / total_people_stroke) * 100
-    st.write(f"Hypertension-wise stroke distribution:")
+    st.write(f"Hypertension status of people who had a stroke:")
     st.write(f"• No Hypertension:  {percent_no_hypertension:.2f}%")
     st.write(f"• Hypertension:  {percent_with_hypertension:.2f}%")
 
@@ -72,7 +118,7 @@ def show_information():
     hypertension_labels = ['No Hypertension', 'Hypertension']
     hypertension_sizes = [percent_no_hypertension, percent_with_hypertension]
     fig, ax = plt.subplots(figsize=(5, 5), dpi=300)  # Adjusted size and dpi for clarity
-    ax.pie(hypertension_sizes, labels=hypertension_labels, autopct='%1.2f%%', colors=['blue', 'yellow'], startangle=90, 
+    ax.pie(hypertension_sizes, labels=hypertension_labels, autopct='%1.2f%%', colors=['lightgreen', 'yellow'], startangle=90, 
         textprops={'fontsize': 15})  # Adjusted font size for labels
     ax.axis('equal')
     st.pyplot(fig)
@@ -84,7 +130,7 @@ def show_information():
     stroke_married = df_stroke[df_stroke['ever_married'] == 'Yes'].shape[0]
     percent_never_married = (stroke_never_married / total_people_stroke) * 100
     percent_married = (stroke_married / total_people_stroke) * 100
-    st.write(f"Marital Status-wise stroke distribution:")
+    st.write(f"Marital Status of people who had a stroke:")
     st.write(f"• Never Married:  {percent_never_married:.2f}%")
     st.write(f"• Married:  {percent_married:.2f}%")
 
@@ -103,7 +149,7 @@ def show_information():
     stroke_urban = df_stroke[df_stroke['Residence_type'] == 'Urban'].shape[0]
     percent_rural = (stroke_rural / total_people_stroke) * 100
     percent_urban = (stroke_urban / total_people_stroke) * 100
-    st.write(f"Residence Type-wise stroke distribution:")
+    st.write(f"Residence Type of people who had a stroke:")
     st.write(f"• Rural:  {percent_rural:.2f}%")
     st.write(f"• Urban:  {percent_urban:.2f}%")
 
@@ -122,8 +168,8 @@ def show_information():
     stroke_with_heart_disease = df_stroke[df_stroke['heart_disease'] == 1].shape[0]
     percent_no_heart_disease = (stroke_no_heart_disease / total_people_stroke) * 100
     percent_with_heart_disease = (stroke_with_heart_disease / total_people_stroke) * 100
-    st.write(f"Heart Disease-wise stroke distribution:")
-    st.write(f"• No Heart Disease:  {percent_no_heart_disease:.2f}%")
+    st.write(f"Heart condition of people who had a stroke:")
+    st.write(f"• No Heart Disease:  {percent_no_heart_disease:.0f}%")
     st.write(f"• Heart Disease:  {percent_with_heart_disease:.2f}%")
 
     # Heart Disease Pie Chart
@@ -148,7 +194,7 @@ def show_information():
     percent_private = (stroke_private / total_people_stroke) * 100
     percent_self_employed = (stroke_self_employed / total_people_stroke) * 100
     percent_have_children = (stroke_have_children / total_people_stroke) * 100
-    st.write(f"Work Type-wise stroke distribution:")
+    st.write(f"Work Type of people who had a stroke:")
     st.write(f"• Government Job:  {percent_govt_job:.2f}%")
     st.write(f"• Never Worked:  {percent_never_worked:.2f}%")
     st.write(f"• Private:  {percent_private:.2f}%")
@@ -160,7 +206,7 @@ def show_information():
     work_type_sizes = [percent_govt_job, percent_never_worked, percent_private, percent_self_employed, percent_have_children]
     fig, ax = plt.subplots(figsize=(5, 5), dpi=300)
     ax.pie(work_type_sizes, labels=work_type_labels, autopct='%1.2f%%', startangle=90, 
-        colors=['purple', 'pink', 'lightblue', 'yellow', 'green'], textprops={'fontsize': 15})
+        colors=['lightgreen', 'pink', 'lightblue', 'yellow', 'green'], textprops={'fontsize': 15})
     ax.axis('equal')
     st.pyplot(fig)
 
@@ -176,7 +222,7 @@ def show_information():
     percent_formerly_smoked = (stroke_formerly_smoked / total_people_stroke) * 100
     percent_never_smoked = (stroke_never_smoked / total_people_stroke) * 100
     percent_smokes = (stroke_smokes / total_people_stroke) * 100
-    st.write(f"Smoking Status-wise stroke distribution:")
+    st.write(f"Smoking Status of people who had a stroke:")
     st.write(f"• Unknown:  {percent_unknown:.2f}%")
     st.write(f"• Formerly Smoked:  {percent_formerly_smoked:.2f}%")
     st.write(f"• Never Smoked:  {percent_never_smoked:.2f}%")
@@ -190,3 +236,115 @@ def show_information():
         colors=['gray', 'lightblue', 'lightgreen', 'orange'], textprops={'fontsize': 15})
     ax.axis('equal')
     st.pyplot(fig)
+
+
+    # 1.8. BMI Distribution
+    st.subheader('1.8. BMI Distribution')
+    st.write(f"BMI of people who had a stroke:")
+    st.write(f"• Average BMI:  {df_stroke['bmi'].mean():.2f}")
+    st.write(f"• Highest BMI:  {df_stroke['bmi'].max():.2f}")
+    st.write(f"• Lowest BMI:  {df_stroke['bmi'].min():.2f}")
+    st.markdown('<div class="custom-div">', unsafe_allow_html=True)
+
+    #Histogram
+    fig, ax = plt.subplots(figsize=(20, 6))
+    sns.histplot(df_stroke['bmi'], kde=True, ax=ax)
+    ax.set_title('Distribution of BMI', fontsize=30)
+    ax.set_xlabel('BMI', fontsize=30)
+    ax.set_ylabel('Frequency', fontsize=30)
+    ax.tick_params(axis='both', which='major', labelsize=20)  
+    st.pyplot(fig)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+
+
+    # 1.9. Age Distribution
+    st.subheader('1.9. Age Distribution')
+    st.write(f"Age of people who had a stroke:")
+    st.write(f"• Average Age:  {df_stroke['age'].mean():.2f}")
+    st.write(f"• Highest Age:  {df_stroke['age'].max():.2f}")
+    st.write(f"• Lowest Age:  {df_stroke['age'].min():.2f}")
+    st.markdown('<div class="custom-div">', unsafe_allow_html=True)
+
+    #Histogram
+    fig, ax = plt.subplots(figsize=(20, 6))
+    sns.histplot(df_stroke['age'], kde=True, ax=ax)
+    ax.set_xlabel('Age', fontsize=30)
+    ax.set_ylabel('Frequency', fontsize=30)
+    ax.tick_params(axis='both', which='major', labelsize=20) 
+    st.pyplot(fig)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    # 1.10. Glucose Level Distribution
+    st.subheader('1.10. Average Gulcose Level Distribution')
+    st.write(f"Average Gulcose Level of people who had a stroke:")
+    st.write(f"• Average Level:  {df_stroke['avg_glucose_level'].mean():.2f}")
+    st.write(f"• Highest Level:  {df_stroke['avg_glucose_level'].max():.2f}")
+    st.write(f"• Lowest Level:  {df_stroke['avg_glucose_level'].min():.2f}")
+    st.markdown('<div class="custom-div">', unsafe_allow_html=True)
+
+    #Histogram
+    fig, ax = plt.subplots(figsize=(20, 6))
+    sns.histplot(df_stroke['avg_glucose_level'], kde=True, ax=ax)
+    ax.set_xlabel('Average Glucose Level', fontsize=30)
+    ax.set_ylabel('Frequency', fontsize=30)
+    ax.tick_params(axis='both', which='major', labelsize=20) 
+    st.pyplot(fig)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    st.header(" ")
+##########################################################################
+    st.header('2. Comparison between people who had a stroke and those who did not')
+
+
+
+    columns = ['gender', 'hypertension', 'ever_married', 'work_type', 'Residence_type', 'smoking_status', 'heart_disease']
+    label_mappings = {
+        'gender': ['Female', 'Male'],
+        'hypertension': ['No', 'Yes'],
+        'ever_married': ['No', 'Yes'],
+        'work_type': ['Government Job', 'Never Worked', 'Private', 'Self-employed', 'Have children'],
+        'Residence_type': ['Rural', 'Urban'],
+        'smoking_status': ['Unknown', 'Formerly Smoked', 'Never Smoked', 'Smokes'],
+        'heart_disease': ['No', 'Yes']
+    }
+
+    i=0
+    for col in range(len(columns)):
+        i=i+1
+        st.header(" ")
+        st.subheader(f'2.{i}. {columns[col].replace("_", " ").capitalize()}')
+        st.header(" ")
+        st.subheader(" ")
+        fig, ax = plt.subplots(figsize=(12, 8))
+        sns.countplot(x=df[columns[col]], hue=df['stroke'], palette=['skyblue', 'black'], ax=ax)
+        ax.set_xticks(range(len(label_mappings[columns[col]])))
+        ax.set_xticklabels(label_mappings[columns[col]], rotation=30, fontsize=12)
+        ax.set_xlabel(columns[col].replace('_', ' ').capitalize(), fontsize=14)
+        ax.set_ylabel('', fontsize=14)
+        ax.legend(title="Stroke", labels=['No', 'Yes'], fontsize=12)
+        st.pyplot(fig)
+
+
+
+    continuous_columns = ['age', 'avg_glucose_level', 'bmi']
+    for i,col in enumerate(continuous_columns, start=8):
+        st.header(" ")
+        st.subheader(f'2.{i}. {col.replace("_", " ").capitalize()}')
+        st.header(" ")
+        st.subheader(" ")
+        fig, ax = plt.subplots(figsize=(10, 6))
+        sns.histplot(
+            data=df,
+            x=col,
+            hue='stroke',
+            kde=False,
+            palette=['skyblue', 'black'],
+            bins=20,
+            multiple='dodge',
+            ax=ax
+        )
+        ax.set_xlabel(col.replace('_', ' ').capitalize(), fontsize=14)
+        ax.set_ylabel('Frequency', fontsize=14)
+        ax.legend(title='Stroke', labels=['No Stroke', 'Stroke'], fontsize=12)
+        st.pyplot(fig)
