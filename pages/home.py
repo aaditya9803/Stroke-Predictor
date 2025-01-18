@@ -82,4 +82,4 @@ def show_home():
             st.write("Please fill in the form and submit")
         
         if st.session_state.result_probability:
-            st.write(f" Your Probability of having a stroke: {st.session_state.result_probability*100}%")
+            st.write(f" Your Probability of having a stroke: {st.session_state.result_probability*100:.2f}%")

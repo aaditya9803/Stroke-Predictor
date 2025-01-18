@@ -3,6 +3,7 @@ from pages.home import show_home
 from pages.information import show_information
 from pages.preprocessing import show_preprocessing
 from pages.chatbot import show_chatbot
+from pages.contact import show_contact
 import base64
 
 
@@ -242,8 +243,9 @@ elif st.session_state.page == 'preprocessing':
 elif st.session_state.page == 'chatbot':
     show_chatbot()
 elif st.session_state.page == 'contact':
-    st.title("Contact")
-    st.write("Get in touch with us")
+    # st.title("Contact")
+    show_contact()
+    # st.write("Get in touch with us")
         
 
 st.markdown('</div>', unsafe_allow_html=True)
