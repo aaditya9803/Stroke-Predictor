@@ -163,3 +163,6 @@ def show_preprocessing():
         """)
     st.markdown("Note: Since the final model was trained on whole dataframe, higher values on performance report means the data is already seen which doesn't implies that the model is overfitting")
 
+
+
+    st.header('3. Analysis on Fake Data')
