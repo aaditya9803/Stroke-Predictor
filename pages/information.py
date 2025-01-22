@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import fake_data_generator from fake_data_generator
 
 def show_information():
 
@@ -336,6 +337,71 @@ def show_information():
         fig, ax = plt.subplots(figsize=(10, 6))
         sns.histplot(
             data=df,
+            x=col,
+            hue='stroke',
+            kde=False,
+            palette=['skyblue', 'black'],
+            bins=20,
+            multiple='dodge',
+            ax=ax
+        )
+        ax.set_xlabel(col.replace('_', ' ').capitalize(), fontsize=14)
+        ax.set_ylabel('Frequency', fontsize=14)
+        ax.legend(title='Stroke', labels=['No Stroke', 'Stroke'], fontsize=12)
+        st.pyplot(fig)
+
+
+
+
+
+
+    st.header("""3. Analysis with 20% fake data""")
+
+
+    ### Generating Fake Data ###
+
+
+
+
+
+    columns = ['gender', 'hypertension', 'ever_married', 'work_type', 'Residence_type', 'smoking_status', 'heart_disease']
+    label_mappings = {
+        'gender': ['Female', 'Male'],
+        'hypertension': ['No', 'Yes'],
+        'ever_married': ['No', 'Yes'],
+        'work_type': ['Government Job', 'Never Worked', 'Private', 'Self-employed', 'Have children'],
+        'Residence_type': ['Rural', 'Urban'],
+        'smoking_status': ['Unknown', 'Formerly Smoked', 'Never Smoked', 'Smokes'],
+        'heart_disease': ['No', 'Yes']
+    }
+
+    i=0
+    for col in range(len(columns)):
+        i=i+1
+        st.header(" ")
+        st.subheader(f'2.{i}. {columns[col].replace("_", " ").capitalize()}')
+        st.header(" ")
+        st.subheader(" ")
+        fig, ax = plt.subplots(figsize=(12, 8))
+        sns.countplot(x=df_mix[columns[col]], hue=df['stroke'], palette=['skyblue', 'black'], ax=ax)
+        ax.set_xticks(range(len(label_mappings[columns[col]])))
+        ax.set_xticklabels(label_mappings[columns[col]], rotation=30, fontsize=12)
+        ax.set_xlabel(columns[col].replace('_', ' ').capitalize(), fontsize=14)
+        ax.set_ylabel('', fontsize=14)
+        ax.legend(title="Stroke", labels=['No', 'Yes'], fontsize=12)
+        st.pyplot(fig)
+
+
+
+    continuous_columns = ['age', 'avg_glucose_level', 'bmi']
+    for i,col in enumerate(continuous_columns, start=8):
+        st.header(" ")
+        st.subheader(f'2.{i}. {col.replace("_", " ").capitalize()}')
+        st.header(" ")
+        st.subheader(" ")
+        fig, ax = plt.subplots(figsize=(10, 6))
+        sns.histplot(
+            data=df_mix,
             x=col,
             hue='stroke',
             kde=False,
