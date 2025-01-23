@@ -3,13 +3,7 @@ import streamlit as st
 
 def show_preprocessing():
 
-    # st.markdown("""
-    # <style>
-    # .stMarkdown { margin-bottom: 5px; }  /* Reduce bottom margin */
-    # </style>
-    # """, unsafe_allow_html=True)
-
-    st.title('Preprocessing, ML Models, and Analysis on Fake Data')
+    st.title('Preprocessing, ML Models, and Effects of Fake Data')
     st.header(" ")
 #Preprocessing
     st.header('1. Preprocessing')
@@ -134,11 +128,10 @@ def show_preprocessing():
     st.subheader(" ")
     st.subheader("2.2. XGBoost")
     st.markdown("**Note: Since the XGBoost Model seemed promising, it is primarily used in this project**")
+    st.subheader(" ")
 # Cross Fold Method XGB
     st.markdown("##### 2.2.1 Cross Fold Method")
     st.code("""
-
-
         _      precision   recall   f1-score   support
         Fold 1:
            0       0.94      0.89      0.92       502
@@ -211,7 +204,8 @@ def show_preprocessing():
 
 #Fake Data
     st.header(" ")
-    st.header('3. Analysis on Fake Data')
+    st.header('3. Fake Data')
+    st.subheader(" ")
     st.subheader('3.1 Fake Data Generator')
 
     st.code("""
@@ -230,4 +224,52 @@ def show_preprocessing():
 
 #Effects of Fake data on Model
     st.subheader(" ")
-    st.subheader("3.2 Effects of Fake Data on the Models")
+    st.subheader("3.2 Effects of Fake Data on the Model Performance")
+    st.markdown("Approach: Dataframe made with fake data was merged to the orginal dataframe")
+    st.subheader(" ")
+    st.markdown("##### 3.2.1 Cross Fold Method with XGBoost")
+    st.code("""
+        _      precision   recall   f1-score   support
+        Fold 1:
+           0       0.95      0.99      0.97      1162
+           1       0.13      0.03      0.05        60
+        Fold 2:
+           0       0.96      0.99      0.98      1177
+           1       0.08      0.02      0.03        45
+        Fold 3:
+           0       0.94      0.99      0.97      1150
+           1       0.28      0.07      0.11        72
+        Fold 4:
+           0       0.95      0.99      0.97      1162
+           1       0.24      0.07      0.10        60
+        Fold 5:
+           0       0.95      0.99      0.97      1157
+           1       0.42      0.08      0.13        65
+        """)
+    st.markdown("Effect of fake data: It can be seen that the model performance for class 1 has significantly decreased")
+    st.code("""
+        Average F1-score across 5 folds: 0.9275
+        Average Accuracy across 5 folds: 0.9439
+        Average Precision across 5 folds: 0.9176
+        Average Precision across 5 folds: 0.9439
+    """)
+    st.markdown("Since 'class 1' is insignificant, Average Model Performance is dominated by 'class 0'")
+    
+# Test Train Split Method with XGBoost
+    st.subheader(" ")
+    st.markdown("##### 3.2.2 Test Train Split Method with XGBoost")
+    st.code("""
+        Final Model Accuracy: 0.9427
+        Final Model Precision: 0.9155
+        Final Model Recall: 0.9427
+        Final Model F1-score: 0.9235
+        Final Model Confusion Matrix:
+        [[1148    8]
+        [  62    4]]
+    """)
+    st.markdown("""
+        Effect of fake data: Even though the Acurracy, Precision, Recall, and F1 scores are dominated by the results of class 0,
+                                the actual effect can be seen on Confusion Matrix where 62 of 'class 1' out of 66 were classified as False Negative.
+                                While True Negative is just 4.
+      """)
+
