@@ -127,6 +127,7 @@ def show_preprocessing():
 #XGBoost model
     st.subheader(" ")
     st.subheader("2.2. XGBoost")
+    st.subheader(" ")
     st.markdown("**Note: Since the XGBoost Model seemed promising, it is primarily used in this project**")
     st.subheader(" ")
 # Cross Fold Method XGB
@@ -225,6 +226,7 @@ def show_preprocessing():
 #Effects of Fake data on Model
     st.subheader(" ")
     st.subheader("3.2 Effects of Fake Data on the Model Performance")
+    st.subheader(" ")
     st.markdown("Approach: Dataframe made with fake data was merged to the orginal dataframe")
     st.subheader(" ")
     st.markdown("##### 3.2.1 Cross Fold Method with XGBoost")
@@ -246,7 +248,7 @@ def show_preprocessing():
            0       0.95      0.99      0.97      1157
            1       0.42      0.08      0.13        65
         """)
-    st.markdown("Effect of fake data: It can be seen that the model performance for class 1 has significantly decreased")
+    st.markdown("Effect of fake data: It can be seen that the model performance for class 1 is significantly less")
     st.code("""
         Average F1-score across 5 folds: 0.9275
         Average Accuracy across 5 folds: 0.9439
