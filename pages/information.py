@@ -12,12 +12,13 @@ def show_information():
 
     train_data = pd.read_csv((filepath), sep=',', header=0)
     df = pd.DataFrame(train_data)
+    df.drop(df[df['gender'] == 'Other'].index, inplace=True)#Since there is only 1 row with 'Other' value
     df['bmi']=df['bmi'].fillna(df['bmi'].mean())
     original_df = df
     df_stroke = df[df['stroke'] == 1]
 
     total_people_stroke = df_stroke.shape[0]
-
+    df.dropna(inplace=True)
     # st.write(df_stroke.head())
 ##########################################################################
     st.header('1. Data Analysis on people who had a stroke')
@@ -387,7 +388,7 @@ def show_information():
         st.header(" ")
         st.subheader(" ")
         fig, ax = plt.subplots(figsize=(12, 8))
-        sns.countplot(x=df_mix[columns[col]], hue=df['stroke'], palette=['skyblue', 'black'], ax=ax)
+        sns.countplot(x=df_mix[columns[col]], hue=df['stroke'], palette=['lightgreen', 'black'], ax=ax)
         ax.set_xticks(range(len(label_mappings[columns[col]])))
         ax.set_xticklabels(label_mappings[columns[col]], rotation=30, fontsize=12)
         ax.set_xlabel(columns[col].replace('_', ' ').capitalize(), fontsize=14)
@@ -409,7 +410,7 @@ def show_information():
             x=col,
             hue='stroke',
             kde=False,
-            palette=['skyblue', 'black'],
+            palette=['lightgreen', 'black'],
             bins=20,
             multiple='dodge',
             ax=ax
@@ -418,3 +419,29 @@ def show_information():
         ax.set_ylabel('Frequency', fontsize=14)
         ax.legend(title='Stroke', labels=['No Stroke', 'Stroke'], fontsize=12)
         st.pyplot(fig)
+
+
+
+
+
+#Comparion of dataframe after adding Fake data
+    st.header(" ")
+    st.header("4. Dataframe after adding Fake data")
+    st.subheader(" ")
+    label_mappings = label_mappings or {}
+    
+    def calculate_percentage_distribution(df, column):
+        return df[column].value_counts(normalize=True) * 100
+    for column in original_df.columns:
+        if original_df[column].dtype == 'object' or original_df[column].nunique() < 10:  # Compare categorical or low-cardinality columns
+            original_dist = calculate_percentage_distribution(original_df, column)
+            mix_dist = calculate_percentage_distribution(df_mix, column)
+            st.write(f"Column: {column}")
+            for value in original_dist.index:
+                original_percent = original_dist[value]
+                mix_percent = mix_dist.get(value, 0)  # Use 0 if value not present in mix_df
+                st.markdown(f"<div style='margin-left: 100px;'> • '{value}' class changed by {abs(original_percent-mix_percent):.2f}%</div>", unsafe_allow_html=True)
+            st.markdown("###### ")
+    st.write("The percentage difference tells us that the random values used to create Fake-Data Dataset weren't biased and was uniformly distributed to each class ")
+    st.write("Approach used to compare the differences:")
+    st.code("| Class Percentage From Original Dataset - Class Percentage From Fake-Data Dataset |" )
