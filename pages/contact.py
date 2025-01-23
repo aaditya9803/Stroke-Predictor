@@ -85,6 +85,6 @@ def show_contact():
             
     """)
     st.subheader(" ")
-    st.header("Contact")
+    st.header("2. Contact")
     st.write('For any queries or feedback, please contact me at:')
     st.write('Email: aaditya.neupane@stud.th-deg.de')
