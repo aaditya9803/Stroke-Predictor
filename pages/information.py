@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import fake_data_generator from fake_data_generator
+from pages.fake_data_generator import fake_data_generator
 
 def show_information():
 
@@ -12,6 +12,8 @@ def show_information():
 
     train_data = pd.read_csv((filepath), sep=',', header=0)
     df = pd.DataFrame(train_data)
+    df['bmi']=df['bmi'].fillna(df['bmi'].mean())
+    original_df = df
     df_stroke = df[df['stroke'] == 1]
 
     total_people_stroke = df_stroke.shape[0]
@@ -353,17 +355,17 @@ def show_information():
 
 
 
+### Generating Fake Data ###
+###############################
+#Analysis with 30% fake dat
+    st.header(" ")
+    st.header("""3. Analysis with 30% fake data""")
 
+#Fake data
+    df_fakedata = fake_data_generator(1500)
+    df_mix = pd.concat([original_df, df_fakedata], ignore_index=True)
 
-    st.header("""3. Analysis with 20% fake data""")
-
-
-    ### Generating Fake Data ###
-
-
-
-
-
+# Mapping the Columns for to use in plot
     columns = ['gender', 'hypertension', 'ever_married', 'work_type', 'Residence_type', 'smoking_status', 'heart_disease']
     label_mappings = {
         'gender': ['Female', 'Male'],
@@ -375,11 +377,13 @@ def show_information():
         'heart_disease': ['No', 'Yes']
     }
 
+#Plotting The Discrete variables of data frame with fake data
+
     i=0
     for col in range(len(columns)):
         i=i+1
         st.header(" ")
-        st.subheader(f'2.{i}. {columns[col].replace("_", " ").capitalize()}')
+        st.subheader(f'3.{i}. {columns[col].replace("_", " ").capitalize()}')
         st.header(" ")
         st.subheader(" ")
         fig, ax = plt.subplots(figsize=(12, 8))
@@ -392,11 +396,11 @@ def show_information():
         st.pyplot(fig)
 
 
-
+#Plotting The continious variables of data frame with fake data
     continuous_columns = ['age', 'avg_glucose_level', 'bmi']
     for i,col in enumerate(continuous_columns, start=8):
         st.header(" ")
-        st.subheader(f'2.{i}. {col.replace("_", " ").capitalize()}')
+        st.subheader(f'3.{i}. {col.replace("_", " ").capitalize()}')
         st.header(" ")
         st.subheader(" ")
         fig, ax = plt.subplots(figsize=(10, 6))

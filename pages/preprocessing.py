@@ -82,15 +82,38 @@ def show_preprocessing():
 
     st.header(" ")
     st.header("2. Machine Learning Models")
+    st.subheader(" ")
 #SVM
     st.subheader("2.1. Support Vector Machine")
+    st.markdown(" ")
+    
 #Cross Fold Method SVM   
     st.markdown("##### 2.1.1 Cross Fold Method")
     st.code("""
-        Average F1-score across 5 folds: 0.7648
-        Average Accuracy across 5 folds: 0.7657
-        Average Precision across 5 folds: 0.7701
-        Average Recall across 5 folds: 0.7657
+
+        _       precision   recall   f1-score   support
+        Fold 1:
+           0       0.79      0.71      0.75       502
+           1       0.73      0.81      0.77       494
+        Fold 2:
+           0       0.75      0.70      0.72       488
+           1       0.73      0.77      0.75       508            
+        Fold 3:   
+           0       0.82      0.67      0.74       509
+           1       0.71      0.85      0.77       487
+        Fold 4:
+           0       0.78      0.70      0.74       506
+           1       0.72      0.80      0.76       490
+        Fold 5:
+           0       0.79      0.71      0.75       485
+           1       0.75      0.82      0.78       511
+            """)
+
+    st.code("""
+        Average F1-score across 5 folds: 0.7530
+        Average Accuracy across 5 folds: 0.7538
+        Average Precision across 5 folds: 0.7577
+        Average Recall across 5 folds: 0.7538
             """)
 
 # Test Train Split SVM
@@ -114,10 +137,30 @@ def show_preprocessing():
 # Cross Fold Method XGB
     st.markdown("##### 2.2.1 Cross Fold Method")
     st.code("""
-        Average F1-score across 5 folds: 0.9223
-        Average Accuracy across 5 folds: 0.9223
-        Average Precision across 5 folds: 0.9232
-        Average Precision across 5 folds: 0.9223
+
+
+        _      precision   recall   f1-score   support
+        Fold 1:
+           0       0.94      0.89      0.92       502
+           1       0.90      0.94      0.92       494
+        Fold 2:
+           0       0.93      0.93      0.93       488
+           1       0.93      0.93      0.93       508
+        Fold 3:
+           0       0.95      0.86      0.91       509
+           1       0.87      0.95      0.91       487
+        Fold 4:
+           0       0.94      0.87      0.90       506
+           1       0.87      0.94      0.91       490
+        Fold 5:
+           0       0.95      0.91      0.93       485
+           1       0.92      0.95      0.94       511
+            """)
+    st.code("""
+        Average F1-score across 5 folds: 0.9188
+        Average Accuracy across 5 folds: 0.9189
+        Average Precision across 5 folds: 0.9205
+        Average Precision across 5 folds: 0.9189
             """)
 # Test-Train Split Method XGB
     st.subheader(" ")
@@ -165,5 +208,26 @@ def show_preprocessing():
 
 
 
+
+#Fake Data
+    st.header(" ")
     st.header('3. Analysis on Fake Data')
-    
+    st.subheader('3.1 Fake Data Generator')
+
+    st.code("""
+    a = []
+    b = []
+    for i in range(1000):
+        a.append(random.choice(original_dataframe['column_a']))
+        b.append(random.choice(original_dataframe['column_a']))
+    fake_data = {
+        "column_a": a,
+        "column_b": b,
+    }
+    df_fakedata = pd.DataFrame(fake_data)
+        """)
+    st.markdown("Approach: Values from the original dataframe was picked  ***randomly*** to generate a dataframe with fake data")
+
+#Effects of Fake data on Model
+    st.subheader(" ")
+    st.subheader("3.2 Effects of Fake Data on the Models")
