@@ -1,0 +1,179 @@
+version: "3.1"
+
+intents:
+  - greet
+  - provide_starting_message
+  - provide_age
+  - provide_gender
+  - provide_hypertension
+  - provide_heart_disease
+  - provide_ever_married
+  - provide_work_type
+  - provide_residence_type
+  - provide_if_know_avg_glucose
+  - provide_avg_glucose_level
+  - provide_height
+  - provide_weight
+  - provide_smoking_status
+  - bot_challenge
+  - goodbye
+
+entities:
+  - start_message
+  - age
+  - gender
+  - hypertension
+  - heart_disease
+  - ever_married
+  - work_type
+  - Residence_type
+  - if_know_avg_glucose
+  - avg_glucose_level
+  - height
+  - weight
+  - smoking_status
+
+slots:
+  age:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: age
+        intent: provide_age
+
+  gender:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: gender
+        intent: provide_gender
+
+  hypertension:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: hypertension
+        intent: provide_hypertension
+
+  heart_disease:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: heart_disease
+        intent: provide_heart_disease
+
+  ever_married:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: ever_married
+        intent: provide_ever_married
+
+  work_type:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: work_type
+        intent: provide_work_type
+
+  Residence_type:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: Residence_type
+        intent: provide_residence_type
+
+  avg_glucose_level:
+    type: float
+    mappings:
+      - type: from_entity
+        entity: avg_glucose_level
+        intent: provide_avg_glucose_level
+
+  if_know_avg_glucose:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: if_know_avg_glucose
+        intent: provide_if_know_avg_glucose
+
+  height:
+    type: float
+    mappings:
+      - type: from_entity
+        entity: height
+        intent: provide_height
+
+  weight:
+    type: float
+    mappings:
+      - type: from_entity
+        entity: weight
+        intent: provide_weight
+
+  smoking_status:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: smoking_status
+        intent: provide_smoking_status
+
+  result_prediction:
+    type: text
+    mappings:
+      - type: custom 
+    influence_conversation: false
+
+  result_probability:
+    type: text
+    mappings:
+      - type: custom 
+    influence_conversation: false
+
+responses:
+  utter_greet:
+    - text: "Hi!"
+  utter_starting_message:
+    - text: "Let's get started! Let me know if you are ready"
+  utter_ask_age:
+    - text: "How old are you?"
+  utter_ask_gender:
+    - text: "What is your gender?"
+  utter_ask_hypertension:
+    - text: "Do you have Hypertension / High Blood Pressure?"
+  utter_ask_heart_disease:
+    - text: "Do you have any heart disease?"
+  utter_ask_ever_married:
+    - text: "Have you ever been married?"
+  utter_ask_work_type:
+    - text: "What is your work type? (Private/Self-Employed/Government Job/Have children/Never Worked)"
+  utter_ask_residence_type:
+    - text: "What is your residence type? (urban, rural)"
+  utter_ask_if_know_avg_glucose:
+    - text: "Do you know your average glucose level?"
+  utter_ask_avg_glucose_level:
+    - text: "What is your average glucose level?"
+  utter_ask_height:
+    - text: "What is your height? (in meters)"
+  utter_ask_weight:
+    - text: "What is your weight? (in kg)"
+  utter_ask_smoking_status:
+    - text: "What is your smoking status? (never smoked, formerly smoked, smokes, unknown)"
+  utter_thank_you:
+    - text: "Thank you for providing all the information! Please wait while I process the information."
+  utter_results:
+    - text: "Based on the information you provided, you {result_prediction} of having a stroke. Probability of having a stroke is {result_probability}."
+  utter_goodbye:
+    - text: "Bye"
+  utter_iamabot:
+    - text: "Hey, I'm just a bot"
+  
+actions:
+  - action_handle_conversation
+
+
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,42 @@
+version: "3.1"
+
+stories:
+- story: all_the_informations
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - action: utter_starting_message
+    - intent: provide_starting_message
+    - action: utter_ask_age
+    - intent: provide_age
+    - action: action_handle_conversation
+    - intent: provide_gender
+    - action: action_handle_conversation
+    - intent: provide_hypertension
+    - action: action_handle_conversation
+    - intent: provide_heart_disease
+    - action: action_handle_conversation
+    - intent: provide_ever_married
+    - action: action_handle_conversation
+    - intent: provide_work_type
+    - action: action_handle_conversation
+    - intent: provide_residence_type
+    - action: action_handle_conversation
+    - intent: provide_if_know_avg_glucose
+    - action: action_handle_conversation
+    - intent: provide_avg_glucose_level
+    - action: action_handle_conversation
+    - intent: provide_height
+    - action: action_handle_conversation
+    - intent: provide_weight
+    - action: action_handle_conversation  
+    - intent: provide_smoking_status
+    - action: action_handle_conversation
+    - action: utter_thank_you
+    - intent: goodbye
+    - action: utter_goodbye
+
+# - story: greet
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
