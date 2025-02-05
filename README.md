@@ -6,7 +6,7 @@ https://github.com/aaditya9803/Stroke-Predictor
 https://github.com/aaditya9803/Stroke-Predictor/-/wikis/home
 
 
-!(/static/image.png)
+![](/static/image.png)
 
 
 # Project Description
