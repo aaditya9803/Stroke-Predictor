@@ -6,6 +6,9 @@ https://github.com/aaditya9803/Stroke-Predictor
 https://github.com/aaditya9803/Stroke-Predictor/-/wikis/home
 
 
+!(/static/image.png)
+
+
 # Project Description
 
 Stroke Predictor is a web app that help users predict their chance of having an stroke. Users can learn about Stroke with the help of visulaization. Developers can learn how the data was processed and trained for Stroke Predictor.
