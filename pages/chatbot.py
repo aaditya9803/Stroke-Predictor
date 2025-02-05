@@ -3,7 +3,7 @@ import requests
 
 def get_rasa_response(message):
     try:
-        rasa_server_url = "http://localhost:5005/webhooks/rest/webhook"
+        rasa_server_url = "http://localhost:8000/webhooks/rest/webhook"
         response = requests.post(
             rasa_server_url,
             json={"sender": "user", "message": message}
@@ -16,8 +16,7 @@ def on_chat_submit():
     st.info("what's up?")
 
 def show_chatbot():
-    st.info("Bot: Hi, I'm Ne the Bot! I will help you predict Stroke")
-    st.info("Bot: Do you want to start?")
+    st.info("Say 'hi' to start a conversation!")
     # chat_input = st.chat_input("Chat with the bot")
 
     # if chat_input:
