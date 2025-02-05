@@ -32,6 +32,8 @@ def show_home():
         st.session_state.update({
             "age": 0,
             "gender": "Male",
+            "height": 0.1,
+            "weight": 0.1,
             "bmi": 0,
             "hypertension": "No",
             "heart_disease": "No",
@@ -57,19 +59,22 @@ def show_home():
     with st.form(key="user_form"):
         st.radio("Select your gender:", ["Male", "Female"], key="gender")
         st.slider("Select your age:", min_value=0, max_value=100, key="age")
-        st.slider("Select your BMI:", min_value=0, max_value=50, key="bmi")
-        st.radio("Do you have Hypertension?", ["Yes", "No"], key="hypertension")
+        st.slider("Select your height:", min_value=0.1, max_value=2.0, key="height", help="Enter your height in meters")
+        st.slider("Select your weight:", min_value=0.1, max_value=180.0, key="weight", help="Enter your weight in kg")
+        # st.slider("Select your BMI:", min_value=0, max_value=50, key="bmi")
+        st.radio("Do you have Hypertension / High Blood Pressure?", ["Yes", "No"], key="hypertension")
         st.radio("Do you have a heart disease?", ["Yes", "No"], key="heart_disease")
-        st.slider("Select your Average Glucose level:", min_value=0, max_value=300, key="avg_gulcose")
+        st.slider("Select your Average Glucose level:", min_value=0, max_value=300, key="avg_gulcose", help="Your Blood Sugar Level in mg/dL")
         st.checkbox("I don't know my Glucose Level", key="dont_know_gulcose")
         st.radio("Are you married?", ["Yes", "No"], key="married")
         st.radio("Select your work type:", ["Private", "Self-employed", "Have children", "Government Job", "Never Worked"], key="work_type")
         st.radio("Select your Residence type:", ["Urban", "Rural"], key="residence")
         st.radio("What kind of smoker are you?", ["Smokes", "Formerly Smoked", "Never Smoked", "Unknown"], key="smokes")
-
+        st.session_state.bmi = st.session_state.weight / (st.session_state.height ** 2)
         # Submit button
         submitted = st.form_submit_button("Submit")
         if submitted:
+            
             form_submit()
 
 
